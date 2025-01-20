@@ -26,6 +26,8 @@ model Org {
   lat Decimal?
   lon Decimal?
 
+  is_active Boolean @default(false)
+
   pets Pet[]
 
   @@map("orgs")
@@ -40,7 +42,10 @@ model Pet {
   energy       String
   environment  String
   independence String
-  org_id       String
+
+  is_active Boolean @default(true)
+
+  org_id String
 
   photos       PetPhoto[]
   requirements AdoptionRequirement[]
