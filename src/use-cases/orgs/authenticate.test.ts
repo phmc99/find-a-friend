@@ -1,5 +1,5 @@
 import { InMemoryOrgsRepository } from "@/repositories/orgs/in-memory-orgs-repository";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 import { hash } from "bcryptjs";
 import { OrgAuthUseCase } from "./authenticate";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error";
@@ -22,10 +22,16 @@ describe("Register Use Case", () => {
     lon: -46.633308,
   };
 
-  it("should be albe to authenticate", async () => {
-    const orgsRepository = new InMemoryOrgsRepository();
-    const sut = new OrgAuthUseCase(orgsRepository);
+  let orgsRepository: InMemoryOrgsRepository;
+  let sut: OrgAuthUseCase;
 
+  beforeEach(() => {
+    orgExample.password = "password123";
+    orgsRepository = new InMemoryOrgsRepository();
+    sut = new OrgAuthUseCase(orgsRepository);
+  });
+
+  it("should be albe to authenticate", async () => {
     orgExample.password = await hash(orgExample.password, 6);
 
     await orgsRepository.create(orgExample);
@@ -39,9 +45,6 @@ describe("Register Use Case", () => {
   });
 
   it("shouldn't be albe to authenticate with invalid e-mail", async () => {
-    const orgsRepository = new InMemoryOrgsRepository();
-    const sut = new OrgAuthUseCase(orgsRepository);
-
     orgExample.password = await hash(orgExample.password, 6);
 
     await orgsRepository.create(orgExample);
@@ -55,9 +58,6 @@ describe("Register Use Case", () => {
   });
 
   it("shouldn't be albe to authenticate with invalid password", async () => {
-    const orgsRepository = new InMemoryOrgsRepository();
-    const sut = new OrgAuthUseCase(orgsRepository);
-
     orgExample.password = await hash(orgExample.password, 6);
 
     await orgsRepository.create(orgExample);

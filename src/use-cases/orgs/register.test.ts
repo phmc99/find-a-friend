@@ -1,5 +1,5 @@
 import { InMemoryOrgsRepository } from "@/repositories/orgs/in-memory-orgs-repository";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 import { OrgRegisterUseCase } from "./register";
 import { compare } from "bcryptjs";
 import { OrgAlreadyExistsError } from "../errors/user-already-exists-error";
@@ -22,11 +22,17 @@ describe("Register Use Case", () => {
     lon: -46.633308,
   };
 
-  it("should be albe to hash the password", async () => {
-    const orgsRepository = new InMemoryOrgsRepository();
-    const regiserUseCase = new OrgRegisterUseCase(orgsRepository);
+  let orgsRepository: InMemoryOrgsRepository;
+  let sut: OrgRegisterUseCase;
 
-    const { org } = await regiserUseCase.execute(orgExample);
+  beforeEach(() => {
+    orgExample.password = "password123";
+    orgsRepository = new InMemoryOrgsRepository();
+    sut = new OrgRegisterUseCase(orgsRepository);
+  });
+
+  it("should be albe to hash the password", async () => {
+    const { org } = await sut.execute(orgExample);
 
     const isPasswordHashed = await compare("password123", org.password);
 
@@ -34,21 +40,15 @@ describe("Register Use Case", () => {
   });
 
   it("shouldn't be albe to create orgs with same email", async () => {
-    const orgsRepository = new InMemoryOrgsRepository();
-    const regiserUseCase = new OrgRegisterUseCase(orgsRepository);
+    await sut.execute(orgExample);
 
-    await regiserUseCase.execute(orgExample);
-
-    expect(() => regiserUseCase.execute(orgExample)).rejects.toBeInstanceOf(
+    await expect(() => sut.execute(orgExample)).rejects.toBeInstanceOf(
       OrgAlreadyExistsError
     );
   });
 
   it("should be albe to create an org", async () => {
-    const orgsRepository = new InMemoryOrgsRepository();
-    const regiserUseCase = new OrgRegisterUseCase(orgsRepository);
-
-    const { org } = await regiserUseCase.execute(orgExample);
+    const { org } = await sut.execute(orgExample);
 
     expect(org.id).toEqual(expect.any(String));
   });
