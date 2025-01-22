@@ -1,3 +1,4 @@
+import { OrgAlreadyExistsError } from "@/errors/user-already-exists-error";
 import { OrgsRepository } from "@/repositories/orgs/org.repository";
 import { hash } from "bcryptjs";
 
@@ -26,7 +27,7 @@ export class OrgRegisterUseCase {
 
     const org = await this.orgsRepository.findByEmail(data.email);
 
-    if (org) throw new Error("E-mail already exists.");
+    if (org) throw new OrgAlreadyExistsError();
 
     await this.orgsRepository.create(data);
   }
