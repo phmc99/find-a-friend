@@ -1,4 +1,4 @@
-import { OrgAlreadyExistsError } from "@/errors/user-already-exists-error";
+import { OrgAlreadyExistsError } from "@/use-cases/errors/user-already-exists-error";
 import { PrismaOrgsRepository } from "@/repositories/orgs/prisma-orgs-repository";
 import { OrgRegisterUseCase } from "@/use-cases/orgs/register";
 import { error } from "console";
