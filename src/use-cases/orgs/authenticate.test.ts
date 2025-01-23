@@ -4,7 +4,7 @@ import { hash } from "bcryptjs";
 import { OrgAuthUseCase } from "./authenticate";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error";
 
-describe("Register Use Case", () => {
+describe("Authenticate Use Case", () => {
   const orgExample = {
     name: "John Doe",
     author: "Admin",
