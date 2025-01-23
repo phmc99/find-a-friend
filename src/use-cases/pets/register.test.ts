@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { PetRegisterUseCase } from "./register";
-import { InMemoryPetsRepository } from "@/repositories/pets/in-memory-orgs-repository";
 import { OrgRegisterUseCase } from "../orgs/register";
 import { InMemoryOrgsRepository } from "@/repositories/orgs/in-memory-orgs-repository";
+import { InMemoryPetsRepository } from "@/repositories/pets/in-memory-pets-repository";
 
 describe("Pets Register Use Case", () => {
   const petRegisterBody = {
@@ -13,7 +13,7 @@ describe("Pets Register Use Case", () => {
     energy: "High",
     environment: "Indoor/Outdoor",
     independence: "Moderate",
-    orgId: "",
+    orgId: "org_id",
   };
 
   const orgRegisterBody = {
@@ -34,22 +34,14 @@ describe("Pets Register Use Case", () => {
   };
 
   let petsRepository: InMemoryPetsRepository;
-  let orgsRepository: InMemoryOrgsRepository;
   let sut: PetRegisterUseCase;
-  let orgRegister: OrgRegisterUseCase;
 
   beforeEach(() => {
     petsRepository = new InMemoryPetsRepository();
-    orgsRepository = new InMemoryOrgsRepository();
     sut = new PetRegisterUseCase(petsRepository);
-    orgRegister = new OrgRegisterUseCase(orgsRepository);
   });
 
   it.only("should be albe to create a pet", async () => {
-    const { org } = await orgRegister.execute(orgRegisterBody);
-
-    petRegisterBody.orgId = org.id;
-
     const { pet } = await sut.execute(petRegisterBody);
 
     expect(pet.id).toEqual(expect.any(String));
