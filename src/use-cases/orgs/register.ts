@@ -1,7 +1,6 @@
 import { OrgAlreadyExistsError } from "@/use-cases/errors/user-already-exists-error";
 import { OrgsRepository } from "@/repositories/orgs/org.repository";
 import { hash } from "bcryptjs";
-import { Org } from "@prisma/client";
 
 interface OrgRegisterBody {
   name: string;
