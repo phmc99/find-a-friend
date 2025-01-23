@@ -1,11 +1,7 @@
-import { OrgAlreadyExistsError } from "@/use-cases/errors/user-already-exists-error";
-import { PrismaOrgsRepository } from "@/repositories/orgs/prisma-orgs-repository";
-import { OrgRegisterUseCase } from "@/use-cases/orgs/register";
-import { error } from "console";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { OrgAuthUseCase } from "@/use-cases/orgs/authenticate";
 import { InvalidCredentialsError } from "@/use-cases/errors/invalid-credentials-error";
+import { makeAuthenticateUseCase } from "@/use-cases/factories/orgs/make-authenticate-use-case";
 
 export async function authenticate(req: FastifyRequest, rep: FastifyReply) {
   const authBodySchema = z.object({
@@ -16,8 +12,7 @@ export async function authenticate(req: FastifyRequest, rep: FastifyReply) {
   const registerBody = authBodySchema.parse(req.body);
 
   try {
-    const orgsRepository = new PrismaOrgsRepository();
-    const authUseCase = new OrgAuthUseCase(orgsRepository);
+    const authUseCase = makeAuthenticateUseCase();
     await authUseCase.execute(registerBody);
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
