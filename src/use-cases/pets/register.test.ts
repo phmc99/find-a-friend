@@ -1,7 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { PetRegisterUseCase } from "./register";
-import { OrgRegisterUseCase } from "../orgs/register";
-import { InMemoryOrgsRepository } from "@/repositories/orgs/in-memory-orgs-repository";
 import { InMemoryPetsRepository } from "@/repositories/pets/in-memory-pets-repository";
 
 describe("Pets Register Use Case", () => {
@@ -14,23 +12,6 @@ describe("Pets Register Use Case", () => {
     environment: "Indoor/Outdoor",
     independence: "Moderate",
     orgId: "org_id",
-  };
-
-  const orgRegisterBody = {
-    name: "John Doe",
-    author: "Admin",
-    email: "johndoe1@example.com",
-    whatsapp: "1234567890",
-    password: "password123",
-    cep: "12345-678",
-    state: "SP",
-    city: "São Paulo",
-    neighborhood: "Centro",
-    street: "Rua Principal",
-    number: "123",
-    complement: "Apt 101",
-    lat: -23.55052,
-    lon: -46.633308,
   };
 
   let petsRepository: InMemoryPetsRepository;
