@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { ResourceNotFoundError } from "../errors/not-found-error";
 import { GetPetProfileUseCase } from "./get-pet-profile";
 import { InMemoryPetsRepository } from "@/repositories/pets/in-memory-pets-repository";
+import { InMemoryOrgsRepository } from "@/repositories/orgs/in-memory-orgs-repository";
 
 describe("Get Pet Profile Use Case", () => {
   const petRegisterBody = {
@@ -15,11 +16,13 @@ describe("Get Pet Profile Use Case", () => {
     org_id: "org_id",
   };
 
+  let orgsRepository: InMemoryOrgsRepository;
   let petsRepository: InMemoryPetsRepository;
   let sut: GetPetProfileUseCase;
 
   beforeEach(() => {
-    petsRepository = new InMemoryPetsRepository();
+    orgsRepository = new InMemoryOrgsRepository();
+    petsRepository = new InMemoryPetsRepository(orgsRepository);
     sut = new GetPetProfileUseCase(petsRepository);
   });
 
