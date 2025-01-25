@@ -9,7 +9,22 @@ export class PrismaPetsRepository implements PetsRepository {
   }
 
   async findAll(searchQuery: findAllPetsSearchQuery): Promise<Pet[]> {
-    return await prisma.pet.findMany();
+    const pets = await prisma.pet.findMany({
+      where: {
+        age: searchQuery.age,
+        size: searchQuery.age,
+        energy: searchQuery.age,
+        environment: searchQuery.age,
+        independence: searchQuery.age,
+        org: {
+          city: {
+            contains: searchQuery.city,
+            mode: "insensitive",
+          },
+        },
+      },
+    });
+    return pets;
   }
 
   async findById(petId: string): Promise<Pet | null> {
