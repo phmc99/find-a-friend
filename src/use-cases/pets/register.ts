@@ -8,7 +8,7 @@ interface PetRegisterBody {
   energy: string;
   environment: string;
   independence: string;
-  orgId: string;
+  org_id: string;
 }
 
 export class PetRegisterUseCase {
@@ -16,7 +16,7 @@ export class PetRegisterUseCase {
   async execute(data: PetRegisterBody) {
     const pet = await this.petsRepository.create({
       ...data,
-      org_id: data.orgId,
+      org_id: data.org_id,
     });
 
     return { pet };

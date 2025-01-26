@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { PetRegisterUseCase } from "./register";
 import { InMemoryPetsRepository } from "@/repositories/pets/in-memory-pets-repository";
+import { InMemoryOrgsRepository } from "@/repositories/orgs/in-memory-orgs-repository";
 
 describe("Pets Register Use Case", () => {
   const petRegisterBody = {
@@ -11,14 +12,16 @@ describe("Pets Register Use Case", () => {
     energy: "High",
     environment: "Indoor/Outdoor",
     independence: "Moderate",
-    orgId: "org_id",
+    org_id: "org_id",
   };
 
+  let orgsRepository: InMemoryOrgsRepository;
   let petsRepository: InMemoryPetsRepository;
   let sut: PetRegisterUseCase;
 
   beforeEach(() => {
-    petsRepository = new InMemoryPetsRepository();
+    orgsRepository = new InMemoryOrgsRepository();
+    petsRepository = new InMemoryPetsRepository(orgsRepository);
     sut = new PetRegisterUseCase(petsRepository);
   });
 
