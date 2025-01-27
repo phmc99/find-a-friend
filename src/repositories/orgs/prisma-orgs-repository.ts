@@ -1,10 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import { Org, Prisma } from "@prisma/client";
-import { OrgsRepository } from "./org.repository";
+import { IOrg, OrgsRepository } from "./org.repository";
 
 export class PrismaOrgsRepository implements OrgsRepository {
-  async findById(orgId: string): Promise<Org | null> {
-    const org = await prisma.org.findUnique({ where: { id: orgId } });
+  async findById(orgId: string): Promise<IOrg | null> {
+    const org = await prisma.org.findUnique({
+      where: { id: orgId },
+      omit: { password: true },
+    });
     return org;
   }
   async findByEmail(email: string) {
