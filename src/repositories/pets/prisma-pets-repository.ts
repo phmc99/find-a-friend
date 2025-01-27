@@ -11,11 +11,11 @@ export class PrismaPetsRepository implements PetsRepository {
   async findAll(searchQuery: findAllPetsSearchQuery): Promise<Pet[]> {
     const pets = await prisma.pet.findMany({
       where: {
-        age: searchQuery.age,
-        size: searchQuery.age,
-        energy: searchQuery.age,
-        environment: searchQuery.age,
-        independence: searchQuery.age,
+        age: searchQuery.age || undefined,
+        size: searchQuery.size || undefined,
+        energy: searchQuery.energy || undefined,
+        environment: searchQuery.environment || undefined,
+        independence: searchQuery.independence || undefined,
         org: {
           city: {
             contains: searchQuery.city,

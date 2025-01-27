@@ -1,11 +1,11 @@
 import { Pet, Prisma } from "@prisma/client";
 
 export interface findAllPetsSearchQuery {
-  age?: string;
-  size?: string;
-  energy?: string;
-  environment?: string;
-  independence?: string;
+  age?: string | null;
+  size?: string | null;
+  energy?: string | null;
+  environment?: string | null;
+  independence?: string | null;
 
   city: string;
 }
