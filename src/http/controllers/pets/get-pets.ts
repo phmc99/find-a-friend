@@ -12,12 +12,12 @@ export async function getPets(req: FastifyRequest, rep: FastifyReply) {
     independence: z.string().optional(),
   });
 
-  const registerBody = paramsSchema.parse(req.query);
+  const getPetsParams = paramsSchema.parse(req.query);
 
   try {
     const getPetsUseCase = makeGetPetsUseCase();
 
-    const pets = await getPetsUseCase.execute(registerBody);
+    const pets = await getPetsUseCase.execute(getPetsParams);
 
     return rep.status(200).send(pets);
   } catch (error) {
