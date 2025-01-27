@@ -1,0 +1,38 @@
+_id: req_7aa54481eceb42438c32b436837d67ac
+type: Request
+parentId: fld_727fa0b6054b4d598384b5d4bbc70fcb
+modified: 1738016204759
+created: 1737926453720
+url: http://localhost:3333/orgs/pets
+name: pet
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+        "name": "Poke",
+        "description": "A friendly and energetic dog.",
+        "age": "5 years",
+        "size": "Medium",
+        "energy": "High",
+        "environment": "Outdoor",
+        "independence": "Moderate"
+     }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: Insomnia/2023.5.3
+authentication:
+  type: bearer
+  token: "{{ _.authToken }}"
+metaSortKey: -1738015905533
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

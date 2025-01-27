@@ -1,0 +1,15 @@
+_id: env_78dacf437f7439ea3b15f56ef51947cbe4811cee
+type: Environment
+parentId: wrk_8652419bc5f8409f8631b266a135725a
+modified: 1738016240323
+created: 1737417580809
+name: Base Environment
+data:
+  authToken: "{% response 'body', 'req_ec02cea377da4ff898a8ac7129370dfc',
+    'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+dataPropertyOrder:
+  "&":
+    - authToken
+color: null
+isPrivate: false
+metaSortKey: 1737417580809

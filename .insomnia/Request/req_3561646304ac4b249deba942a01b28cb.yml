@@ -1,0 +1,23 @@
+_id: req_3561646304ac4b249deba942a01b28cb
+type: Request
+parentId: fld_c48ff3ffa19748fcae1d388bb444c544
+modified: 1738015886146
+created: 1737593165216
+url: http://localhost:3333/orgs/7a7f9ad3-e441-406d-a4d6-361978d77324
+name: org profile
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: User-Agent
+    value: Insomnia/2023.5.3
+authentication: {}
+metaSortKey: 25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

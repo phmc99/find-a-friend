@@ -1,0 +1,31 @@
+_id: req_ec02cea377da4ff898a8ac7129370dfc
+type: Request
+parentId: fld_c48ff3ffa19748fcae1d388bb444c544
+modified: 1738016060459
+created: 1737581747418
+url: http://localhost:3333/orgs/sessions
+name: auth
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |
+    {
+      "email": "alex@example.com",
+      "password": "password123"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - name: User-Agent
+    value: Insomnia/2023.5.3
+authentication: {}
+metaSortKey: 50
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
