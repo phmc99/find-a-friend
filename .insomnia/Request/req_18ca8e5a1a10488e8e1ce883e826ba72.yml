@@ -1,0 +1,23 @@
+_id: req_18ca8e5a1a10488e8e1ce883e826ba72
+type: Request
+parentId: fld_727fa0b6054b4d598384b5d4bbc70fcb
+modified: 1738015910025
+created: 1738013701429
+url: http://localhost:3333/orgs/pets?city=rio
+name: pets
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: User-Agent
+    value: Insomnia/2023.5.3
+authentication: {}
+metaSortKey: -1738015905483
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

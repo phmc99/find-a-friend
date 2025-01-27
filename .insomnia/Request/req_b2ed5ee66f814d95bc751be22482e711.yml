@@ -1,0 +1,23 @@
+_id: req_b2ed5ee66f814d95bc751be22482e711
+type: Request
+parentId: fld_727fa0b6054b4d598384b5d4bbc70fcb
+modified: 1738015913016
+created: 1738015304394
+url: http://localhost:3333/orgs/pets/8dfde1d7-8963-495b-8447-134f845dd03a
+name: pet profile
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: User-Agent
+    value: Insomnia/2023.5.3
+authentication: {}
+metaSortKey: -1738015905433
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
