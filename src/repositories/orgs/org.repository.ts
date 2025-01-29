@@ -21,8 +21,14 @@ export interface IOrg {
   is_active: boolean;
 }
 
+export interface FindManyNearbyParams {
+  latitude: number;
+  longitude: number;
+}
+
 export interface OrgsRepository {
   findById(orgId: string): Promise<IOrg | null>;
   findByEmail(email: string): Promise<Org | null>;
+  findManyNearby(params: FindManyNearbyParams): Promise<Org[]>;
   create(data: Prisma.OrgCreateInput): Promise<Org>;
 }
