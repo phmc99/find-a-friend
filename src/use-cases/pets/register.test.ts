@@ -25,7 +25,7 @@ describe("Pets Register Use Case", () => {
     sut = new PetRegisterUseCase(petsRepository);
   });
 
-  it.only("should be albe to create a pet", async () => {
+  it("should be albe to create a pet", async () => {
     const { pet } = await sut.execute(petRegisterBody);
 
     expect(pet.id).toEqual(expect.any(String));
